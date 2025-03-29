@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <h1>Latest Sensor Data</h1>
+  <table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Soil Moisture</th>
+        <th>Temperature</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for point in data %}
+      <tr>
+        <td>{{ point.time }}</td>
+        <td>{{ point.soil_moisture }}</td>
+        <td>{{ point.temperature }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

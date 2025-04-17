@@ -1,0 +1,28 @@
+name: Deploy dataSend.py
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Copy script to master and restart service
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.MASTER_HOST }}
+        username: ${{ secrets.MASTER_USER }}
+        key: ${{ secrets.SSH_DEPLOY_KEY }}
+        script: |
+          # go to your scripts directory
+          cd ~/garduino/garden-api
+          # pull the latest
+          git pull origin main
+          # if you install via pip, update deps:
+          pip3 install -r requirements.txt
+          # restart the forwarder service
+          sudo systemctl restart data-forwarder.service

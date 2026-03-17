@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOUR_GITHUB_USERNAME/garduino.git
+    repoURL: https://github.com/ryancookd/garduino.git
     targetRevision: main
     path: apps/nginx
   destination:
